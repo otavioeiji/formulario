@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie-edge">
+    <meta name="author" content="Otávio Eiji Mitsuzaki">
+	<!-- Titulo -->
+    <title>Formulário</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
+    <!-- VueJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+  </head>
+  <body>
+    <div id="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6"> 
+                <div class="card mb-5 mt-5">
+                    <div class="card-header">
+                        Formulário
+                    </div>
+                    <div class="card-body">
+                        <span class="float-right" style="color: red; font-size: 14px">*Campos obrigatórios!</span>
+                        <form action="" v-on:submit.prevent="checkForm">
+                            <h5 class="card-title">Insira os dados abaixo:</h5>
+                            <input type="name" name="nome" class="form-control mb-2" placeholder="*Nome:" v-model="name">
+                            <input type="email" name="email" class="form-control mb-2" placeholder="*E-mail:" v-model="email">
+                            <input type="text" name="telefone" class="form-control mb-2" placeholder="*Telefone:" v-model="phone" @input="acceptNumber">
+                            <textarea rows="10" cols="100" name="menssagem" class="form-control mb-2" maxlength="999" style="resize:none" placeholder="*Mensagem:" v-model="message"></textarea>
+                            <button class="btn btn-primary">Enviar</button>
+                        </form>
+                    </div>
+                     <ul>
+                        <li v-for="error in errors">{{ error }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: "#container",
+            data: {
+                name: null,
+                email: null,
+                phone: null,
+                message: null,
+                errors: []
+            },
+            methods: {
+               	acceptNumber() {
+    	           var x = this.phone.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+                   this.phone = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+                },
+                checkForm: function() {
+                    this.errors = [];
+                    if(!this.name || !this.email || !this.phone || !this.message) {
+                        this.errors.push('Preencha os campos obrigatórios!');
+                    }
+                    else {
+                        this.errors.push('Enviado com sucesso!');
+                    }
+                }
+            }
+        });   
+    </script>
+  </body>
+</html>
+
+    
