@@ -6,3 +6,5 @@
 
 Validação de formulário utilizando VueJS aplicando regras de envio.
 Neste formulário não é possível fazer o envio sem preencher obrigatoriamente todos os campos.
+
+Para executar basta baixar a pasta e executar o arquivo index.html.
