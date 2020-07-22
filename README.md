@@ -5,3 +5,4 @@
 :page_with_curl: Validação de formulário.
 
 Validação de formulário utilizando VueJS aplicando regras de envio.
+Neste formulário não é possível fazer o envio sem preencher obrigatoriamente todos os campos.
